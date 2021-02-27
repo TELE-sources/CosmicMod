@@ -200,15 +200,17 @@ vim /etc/conf.d/xdm
     
 usermod -a -G video sddm
 
-emerge --ask --verbose konsole kde-apps/dolphin ark kate kde-apps/kompare gparted app-arch/unar app-arch/p7zip app-arch/lrzip kde-apps/kleopatra kde-misc/markdownpart kde-misc/kmarkdownwebview media-gfx/kgraphviewer haveged kde-apps/ffmpegthumbs kde-apps/thumbnailers kde-misc/kdeconnect gentoolkit
+emerge --ask --verbose konsole git kde-apps/dolphin kate kde-apps/kompare gparted  
 
-revdep-rebuild
+# emerge haveged if you need an entropy generator at boot.
+# rc-update add haveged boot
+
+# if needing to utilize command below emerge gentoolkit
+# revdep-rebuild
 
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
 passwd mod
-
-rc-update add haveged boot
 
 rc-update add cupsd default
 
@@ -216,7 +218,7 @@ rc-update add dbus default
 
 rc-update add elogind boot
 
-rm stage3-amd64-20210203T214504Z.tar.xz
+rm stage3-amd64-*.tar.xz
 
 emerge --sync
 
@@ -240,35 +242,3 @@ exit
 
 exit
 
-
-
-*** Post Install ***
-
-# update world file using diff viewer
-
-emerge --sync
-
-emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
-
-emerge --depclean
-
-eselect fontconfig --list
-
-eselect fontconfig enable 30 37 40 46 50 54 58 61
-
-freshclam
-
-emerge --config =dev-db/mariadb-10.4.17
-
-rc-update add metalog default
-
-
-
-eclean -d distfiles
-
-eselect news purge
-
-history -c
-
-
-****
