@@ -1,8 +1,0 @@
-# To generate list of repos
-layman -L
-
-#for sof-firmware-1.6.1
-layman -a ferki 
-
-#for pulseaudio-14.2
-layman -a holgersson-overlay

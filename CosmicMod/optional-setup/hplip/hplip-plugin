@@ -1,1 +1,0 @@
-emerge --ask --verbose net-print/hplip-plugin
