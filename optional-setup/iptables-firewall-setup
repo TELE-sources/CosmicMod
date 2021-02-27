@@ -1,0 +1,28 @@
+rc-service iptables save
+
+rc-service iptables start
+
+rc-update add iptables default 
+
+rc-service ip6tables save
+
+rc-service ip6tables start
+
+rc-update add ip6tables default
+
+cd /home/mod
+
+chmod 744 firewall.sh
+
+./firewall.sh
+
+/etc/init.d/iptables save
+
+/etc/init.d/ip6tables save
+
+rc-update add iptables boot
+
+rc-update add ip6tables boot
+
+
+***** 
