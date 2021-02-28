@@ -11,6 +11,7 @@ app-portage/gentoolkit
 app-portage/layman
 app-portage/mirrorselect
 app-text/evince
+dev-vcs/git
 kde-apps/ark
 kde-apps/dolphin
 kde-apps/dolphin-plugins-git
@@ -45,13 +46,12 @@ media-fonts/takao-fonts
 media-fonts/wqy-microhei
 media-fonts/wqy-zenhei
 media-gfx/kgraphviewer
+media-video/libva-utils
 media-video/simplescreenrecorder
 net-irc/konversation
 net-misc/ntp
 net-p2p/transmission
 sys-apps/flatpak
-sys-apps/haveged
-sys-apps/hdparm
 sys-apps/lshw
 sys-apps/pciutils
 sys-apps/s6
@@ -68,3 +68,4 @@ sys-process/lsof
 virtual/jre
 www-client/chromium
 www-client/firefox
+x11-misc/vdpauinfo
