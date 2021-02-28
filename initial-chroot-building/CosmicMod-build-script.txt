@@ -1,7 +1,7 @@
-﻿
+
 fdisk -l
 
-dd if=/dev/zero of=/dev/sdc bs=1M
+# dd if=/dev/zero of=/dev/sdc bs=1M
 
 sync
 
@@ -11,21 +11,21 @@ screen -S CosmicMod-2021
 
 fdisk -l
 
-parted -a optimal /dev/sdc
+# parted -a optimal /dev/sdc
 
 mklabel gpt
 
 unit MiB
 
-mkpart primary 1 1000
+mkpart primary 1 10000
 
 name 1 boot
 
-mkpart primary 1000 17000
+mkpart primary 10000 26000
 
 name 2 swap
 
-mkpart primary 17000 -1000
+mkpart primary 26000 -1
 
 name 3 rootfs
 
@@ -37,25 +37,25 @@ quit
 
 sync
 
-mkfs.fat -F 32 /dev/sdc1
+# mkfs.fat -F 32 /dev/sdc1
 
-mkfs.ext4 /dev/sdc3
+# mkfs.ext4 /dev/sdc3
 
-mkswap /dev/sdc2
+# mkswap /dev/sdc2
 
-swapon /dev/sdc2
+# swapon /dev/sdc2
 
 blkid
 
 mkdir /mnt/gentoo
 
-#mount /dev/sdc3 /mnt/gentoo
+# mount /dev/sdc3 /mnt/gentoo
 
 cd /mnt/gentoo
 
-wget http://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20210203T214504Z.tar.xz
+# wget http://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20210203T214504Z.tar.xz
 
-tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+# tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
 vim /mnt/gentoo/etc/portage/make.conf
 
@@ -79,7 +79,7 @@ export PS1="(chroot) ${PS1}"
 
 mkdir /boot
 
-#mount /dev/sdc1 /boot
+# mount /dev/sdc1 /boot
 
 emerge --sync
 
@@ -142,7 +142,7 @@ paperconfig -p letter
 
 eselect fontconfig list
 
-eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
+# eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
 
 emerge --depclean
 
@@ -152,7 +152,9 @@ vim /etc/hosts
 
 passwd
 
-emerge --ask --verbose dosfstools grub evince
+emerge --ask --verbose dosfstools grub 
+
+# evince is an optional dependency 
 
 rc-update add lvm boot
 
@@ -184,26 +186,19 @@ emerge --depclean
 
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
 
-#emerge --ask --verbose gui-libs/display-manager-init
-
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
 
-rc-update add xdm default
+rc-update add display-manager default
 
-#rc-update add display-manager default
+vim /etc/conf.d/display-manager
 
-#vim /etc/conf.d/display-manager
-
-    DISPLAYMANAGER="sddm"
+# DISPLAYMANAGER="sddm"
 
 vim /etc/conf.d/xdm   
     
 usermod -a -G video sddm
 
 emerge --ask --verbose konsole git kde-apps/dolphin kate kde-apps/kompare gparted  
-
-# emerge haveged if you need an entropy generator at boot.
-# rc-update add haveged boot
 
 # if needing to utilize command below emerge gentoolkit
 # revdep-rebuild
