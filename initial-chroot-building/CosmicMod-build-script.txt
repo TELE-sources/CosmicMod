@@ -66,15 +66,10 @@ cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 
 mount --types proc /proc /mnt/gentoo/proc
-
 mount --rbind /sys /mnt/gentoo/sys
-
 mount --rbind /dev /mnt/gentoo/dev
-
 chroot /mnt/gentoo /bin/bash
-
 source /etc/profile
-
 export PS1="(chroot) ${PS1}"
 
 mkdir /boot
@@ -96,7 +91,6 @@ echo "US/Central" > /etc/timezone
 emerge --config sys-libs/timezone-data
 
 emerge --ask --verbose vim
-
 emerge --ask --verbose --depclean
 
 eselect editor list
@@ -135,7 +129,6 @@ eselect kernel set 1
 emerge --ask --verbose sys-kernel/gentoo-kernel
 
 emerge --sync
-
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
@@ -167,7 +160,6 @@ vim /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 emerge --sync
-
 emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
@@ -179,9 +171,7 @@ eselect fontconfig enable 16 17 18 29 30 38 40
 emerge --ask --verbose kwalletmanager sys-devel/gdb app-misc/media-player-info
 
 emerge --sync
-
 emerge --update --newuse --deep --with-bdeps=y --ask --verbose @world
-
 emerge --depclean
 
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
@@ -216,11 +206,8 @@ rc-update add elogind boot
 rm stage3-amd64-*.tar.xz
 
 emerge --sync
-
 emerge --ask --verbose --update --newuse --deep --with-bdeps=y @world
-
 emerge --depclean
-
 sync
 
 exit
