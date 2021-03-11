@@ -2,8 +2,7 @@
 
 # update world file using diff viewer
 
-emerge --ask --verbose --sync
-emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+emerge --ask --verbose --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 eselect fontconfig --list
 
@@ -15,13 +14,4 @@ emerge --config =dev-db/mariadb-10.4.17
 
 user $flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-rc-update add metalog default
-rc-update add bluetooth default
-rc-service bluetooth start
-emerge --depclean
-eclean -d distfiles
-eselect news purge
-history -c
-
- 
-
+rc-update add metalog default && rc-update add bluetooth default && rc-service bluetooth start && emerge --depclean && eclean -d distfiles && eselect news purge && history -c
