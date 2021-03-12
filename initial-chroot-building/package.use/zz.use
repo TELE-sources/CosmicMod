@@ -1,3 +1,4 @@
+app-portage/layman sync-plugin-portage
 kde-plasma/kde-cli-tools kdesu
 net-misc/networkmanager connection-sharing
 sys-kernel/linux-firmware redistributable
