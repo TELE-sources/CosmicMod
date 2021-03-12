@@ -14,7 +14,6 @@ app-text/evince
 dev-vcs/git
 kde-apps/ark
 kde-apps/dolphin
-kde-apps/dolphin-plugins-git
 kde-apps/ffmpegthumbs
 kde-apps/gwenview
 kde-apps/kalarm
@@ -47,7 +46,7 @@ media-fonts/wqy-microhei
 media-fonts/wqy-zenhei
 media-gfx/kgraphviewer
 media-video/libva-utils
-media-video/simplescreenrecorder
+net-firewall/ufw
 net-irc/konversation
 net-misc/ntp
 net-p2p/transmission
