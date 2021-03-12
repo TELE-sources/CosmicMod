@@ -3,3 +3,31 @@ net-misc/networkmanager connection-sharing
 sys-kernel/linux-firmware redistributable
 kde-apps/ksystemlog kdesu
 media-libs/libsdl2 gles2
+net-wireless/wpa_supplicant ap
+kde-plasma/plasma-meta firewall qrcode
+www-client/chromium official
+# required by media-libs/mesa-20.2.6::gentoo[-video_cards_r100,-video_cards_r200,-video_cards_r300,-video_cards_r600,video_cards_radeonsi,-video_cards_radeon]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by media-libs/glu-9.0.1::gentoo
+# required by virtual/glu-9.0-r2::gentoo
+# required by media-libs/freeglut-3.2.1::gentoo
+# required by app-text/mupdf-1.18.0-r2::gentoo[opengl]
+# required by net-print/cups-filters-1.28.3::gentoo[pdf]
+# required by net-print/cups-2.3.3-r2::gentoo
+# required by app-text/ghostscript-gpl-9.53.3-r5::gentoo[cups]
+>=x11-libs/libdrm-2.4.103 video_cards_radeon
+# required by gnustep-base/gnustep-make-2.8.0::gentoo
+# required by gnustep-base/gnustep-base-1.27.0::gentoo
+# required by app-arch/unar-1.10.7::gentoo
+# required by app-arch/unar (argument)
+>=sys-devel/gcc-9.3.0-r2 objc
+# required by app-arch/unar-1.10.7::gentoo
+# required by app-arch/unar (argument)
+>=gnustep-base/gnustep-make-2.8.0 native-exceptions
+# required by www-client/chromium-88.0.4324.150::gentoo
+# required by @selected
+# required by @world (argument)
+>=net-libs/nodejs-14.15.4 inspector
+# required by www-client/firefox-78.7.1-r1::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.9.0 postproc
