@@ -1,12 +1,12 @@
 fdisk -l
 
-dd if=/dev/zero of=/dev/sda bs=1M
-
-sync
+dd if=/dev/zero of=/dev/sda bs=1M && sync
 
 reboot
 
-screen -S CosmicMod-2021 && fdisk -l
+screen -S CosmicMod-2021
+
+fdisk -l
 
 parted -a optimal /dev/sda
 
