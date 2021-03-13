@@ -101,8 +101,6 @@ vim /etc/conf.d/hostname
 
 vim /etc/hosts
 
-passwd
-
 emerge --ask --verbose dosfstools grub 
 
 # evince is an optional dependency 
@@ -157,6 +155,8 @@ emerge --ask --verbose konsole git kde-apps/dolphin kate kde-apps/kompare gparte
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
 passwd mod
+
+passwd
 
 rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rm stage3-amd64-*.tar.xz
 
