@@ -28,6 +28,6 @@
 #LABEL=swap		none		swap		sw		0 0
 #/dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
 
-UUID=02A5-D857                              /boot   vfat    defaults,noatime            0 2
-UUID=ce33ad9a-14ea-4491-8193-f153ca947b24   none    swap    sw                          0 0
-UUID=346aeb16-efe4-40c5-b716-83fc73534bef   /       ext4    defaults,noatime,discard    0 1
+UUID=4FED-C015                              /boot   vfat    defaults,noatime            0 2
+UUID=4878889c-606c-442a-875b-b0041fce1d72   /       ext4    defaults,noatime,discard    0 1
+UUID=fd14c1e8-d18f-47c2-b113-70746a6290bf   none    swap    sw                          0 0
