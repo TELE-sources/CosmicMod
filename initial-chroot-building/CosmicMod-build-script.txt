@@ -1,17 +1,14 @@
-
 fdisk -l
 
-# dd if=/dev/zero of=/dev/sda bs=1M
+dd if=/dev/zero of=/dev/sda bs=1M
 
 sync
 
 reboot
 
-screen -S CosmicMod-2021
+screen -S CosmicMod-2021 && fdisk -l
 
-fdisk -l
-
-# parted -a optimal /dev/sdc
+parted -a optimal /dev/sda
 
 mklabel gpt
 
@@ -25,7 +22,7 @@ mkpart primary 10000 26000
 
 name 2 swap
 
-mkpart primary 26000 -1
+mkpart primary 26000 -1000
 
 name 3 rootfs
 
@@ -35,29 +32,25 @@ print
 
 quit
 
-sync
+sync 
 
-# mkfs.fat -F 32 /dev/sdc1
+mkfs.fat -F 32 /dev/sda1
 
-# mkfs.ext4 /dev/sdc3
+mkfs.ext4 /dev/sda3 
 
-# mkswap /dev/sdc2
+mkswap /dev/sda2
 
-# swapon /dev/sdc2
-
-blkid
+swapon /dev/sda2 
 
 mkdir /mnt/gentoo
 
-# mount /dev/sdc3 /mnt/gentoo
+mount /dev/sda3 /mnt/gentoo 
 
 cd /mnt/gentoo
 
-# wget http://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20210203T214504Z.tar.xz
+wget http://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20210310T214503Z.tar.xz
 
-# tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-
-vim /mnt/gentoo/etc/portage/make.conf
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
 mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 
@@ -65,11 +58,21 @@ cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 
-mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys && mount --rbind /dev /mnt/gentoo/dev && chroot /mnt/gentoo /bin/bash && source /etc/profile && export PS1="(chroot) ${PS1}"
+mount --types proc /proc /mnt/gentoo/proc 
 
-mkdir /boot
+mount --rbind /sys /mnt/gentoo/sys
 
-# mount /dev/sdc1 /boot
+mount --rbind /dev /mnt/gentoo/dev
+
+chroot /mnt/gentoo /bin/bash 
+
+source /etc/profile
+
+export PS1="(chroot) ${PS1}"
+
+mount /dev/sda1 /boot
+
+vim /etc/portage/make.conf
 
 emerge --sync
 
@@ -85,13 +88,19 @@ echo "US/Central" > /etc/timezone
 
 emerge --config sys-libs/timezone-data
 
-emerge --ask --verbose vim && emerge --ask --verbose --depclean
+emerge --ask --verbose vim
+
+emerge --ask --verbose --depclean
 
 eselect editor list
 
 eselect editor set 2
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+env-update
+
+source /etc/profile
+
+export PS1="(chroot) $PS1"
 
 vim /etc/locale.gen
 
@@ -104,9 +113,19 @@ eselect locale list
 
 eselect locale set 6
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+env-update
 
-emerge --ask --verbose net-misc/ntp && ntpd -q -g && hwclock --systohc
+source /etc/profile
+
+export PS1="(chroot) $PS1"
+
+emerge --ask --verbose net-misc/ntp
+
+ntpd -q -g
+
+hwclock --systohc
+
+blkid
 
 vim /etc/fstab
 
@@ -116,13 +135,17 @@ eselect kernel list
 
 eselect kernel set 1
 
-emerge --ask --verbose sys-kernel/gentoo-kernel && emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+emerge --ask --verbose sys-kernel/gentoo-kernel
+
+emerge --sync
+
+emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
 
 eselect fontconfig list
 
-# eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
+eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
 
 emerge --depclean
 
@@ -146,30 +169,34 @@ vim /etc/default/grub
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
-emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
+emerge --sync
+
+emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
 
 eselect fontconfig enable 16 17 18 29 30 38 40
 
-# rc-update add alsasound boot
-
 emerge --ask --verbose kwalletmanager sys-devel/gdb app-misc/media-player-info
 
-emerge --sync && emerge --update --newuse --deep --with-bdeps=y --ask --verbose @world && emerge --depclean
+emerge --sync
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+emerge --update --newuse --deep --with-bdeps=y --ask --verbose @world
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+emerge --depclean
 
-rc-update add display-manager default
+env-update
 
-vim /etc/conf.d/display-manager
+source /etc/profile
 
-# DISPLAYMANAGER="sddm"
+export PS1="(chroot) $PS1"
+
+rc-update add xdm default
 
 vim /etc/conf.d/xdm   
     
+# DISPLAYMANAGER="sddm"
+
 usermod -a -G video sddm
 
 emerge --ask --verbose konsole git kde-apps/dolphin kate kde-apps/kompare gparted  
@@ -189,7 +216,13 @@ rc-update add elogind boot
 
 rm stage3-amd64-*.tar.xz
 
-emerge --sync && emerge --ask --verbose --update --newuse --deep --with-bdeps=y @world && emerge --depclean && sync
+emerge --sync
+
+emerge --ask --verbose --update --newuse --deep --with-bdeps=y @world
+
+emerge --depclean
+
+sync
 
 exit
 
