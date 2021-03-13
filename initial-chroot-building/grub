@@ -29,7 +29,7 @@ GRUB_TIMEOUT_STYLE=menu
 # GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd"
 
 # Append parameters to the linux kernel command line for non-recovery entries
-GRUB_CMDLINE_LINUX_DEFAULT="scandelay slowusb root=UUID=346aeb16-efe4-40c5-b716-83fc73534bef"
+GRUB_CMDLINE_LINUX_DEFAULT="scandelay slowusb root=UUID=4878889c-606c-442a-875b-b0041fce1d72"
 
 # Uncomment to disable graphical terminal (grub-pc only)
 #GRUB_TERMINAL=console
