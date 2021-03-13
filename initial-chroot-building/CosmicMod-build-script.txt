@@ -95,21 +95,11 @@ vim /etc/fstab
 
 emerge --ask --verbose linux-firmware
 
+emerge --ask --verbose sys-kernel/gentoo-kernel
+
 eselect kernel list
 
 eselect kernel set 1
-
-emerge --ask --verbose sys-kernel/gentoo-kernel
-
-emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
-
-paperconfig -p letter
-
-eselect fontconfig list
-
-eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
-
-emerge --depclean
 
 vim /etc/conf.d/hostname
 
@@ -127,7 +117,19 @@ grub-install --target=x86_64-efi --efi-directory=/boot --removable && grub-mkcon
 
 vim /etc/default/grub
 
-grub-mkconfig -o /boot/grub/grub.cfg && emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
+grub-mkconfig -o /boot/grub/grub.cfg 
+
+emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+
+paperconfig -p letter
+
+eselect fontconfig list
+
+eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
+
+emerge --depclean
+
+emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
 
