@@ -3,15 +3,12 @@ app-arch/lrzip
 app-arch/p7zip
 app-arch/unar
 app-editors/vim
-app-misc/media-player-info
 app-misc/screen
 app-office/libreoffice
 app-portage/cpuid2cpuflags
 app-portage/gentoolkit
 app-portage/layman
 app-portage/mirrorselect
-app-text/evince
-dev-vcs/git
 kde-apps/ark
 kde-apps/dolphin
 kde-apps/ffmpegthumbs
@@ -34,7 +31,6 @@ kde-apps/thumbnailers
 kde-apps/zeroconf-ioslave
 kde-misc/kdeconnect
 kde-misc/kio-gdrive
-kde-misc/kmarkdownwebview
 kde-misc/markdownpart
 kde-plasma/plasma-meta
 media-fonts/arphicfonts
@@ -53,11 +49,9 @@ net-p2p/transmission
 sys-apps/flatpak
 sys-apps/lshw
 sys-apps/pciutils
-sys-apps/s6
 sys-apps/usbutils
 sys-block/gparted
 sys-boot/grub
-sys-devel/gdb
 sys-firmware/sof-firmware
 sys-fs/dosfstools
 sys-fs/quota
