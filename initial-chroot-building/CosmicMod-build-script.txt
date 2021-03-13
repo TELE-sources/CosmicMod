@@ -109,6 +109,8 @@ vim /etc/default/grub
 
 grub-mkconfig -o /boot/grub/grub.cfg 
 
+vim /etc/portage/package.use/circular.use
+
 emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
