@@ -97,10 +97,6 @@ emerge --ask --verbose linux-firmware
 
 emerge --ask --verbose sys-kernel/gentoo-kernel
 
-eselect kernel list
-
-eselect kernel set 1
-
 vim /etc/conf.d/hostname
 
 vim /etc/hosts
