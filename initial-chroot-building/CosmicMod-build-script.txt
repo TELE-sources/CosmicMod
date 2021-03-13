@@ -103,10 +103,6 @@ vim /etc/hosts
 
 emerge --ask --verbose dosfstools grub 
 
-# evince is an optional dependency 
-
-# rc-update add lvm boot
-
 grub-install --target=x86_64-efi --efi-directory=/boot --removable && grub-mkconfig -o /boot/grub/grub.cfg
 
 vim /etc/default/grub
