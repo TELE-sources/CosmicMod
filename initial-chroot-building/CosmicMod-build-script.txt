@@ -42,9 +42,9 @@ source /etc/profile && export PS1="(chroot) ${PS1}"
 
 mount /dev/sda1 /boot
 
-vim /etc/portage/make.conf
+emerge --sync
 
-emerge --sync && eselect news list
+eselect news list
 
 eselect profile list
 
@@ -65,6 +65,8 @@ eselect editor list
 eselect editor set 2
 
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
+
+vim /etc/portage/make.conf
 
 vim /etc/locale.gen
 
@@ -156,7 +158,11 @@ passwd mod
 
 rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rm stage3-amd64-*.tar.xz
 
-emerge --sync && emerge --ask --verbose --update --newuse --deep --with-bdeps=y @world && emerge --depclean && sync
+emerge --sync 
+
+emerge --ask --verbose --update --newuse --deep --with-bdeps=y @world
+
+emerge --depclean && sync
 
 exit
 
