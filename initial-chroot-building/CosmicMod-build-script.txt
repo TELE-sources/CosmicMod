@@ -115,10 +115,6 @@ emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y 
 
 paperconfig -p letter
 
-eselect fontconfig list
-
-eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 17 27 29 32 33
-
 emerge --depclean
 
 emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
@@ -126,8 +122,6 @@ emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
 eselect fontconfig list
 
 eselect fontconfig enable 16 17 18 29 30 38 40
-
-emerge --ask --verbose kwalletmanager sys-devel/gdb app-misc/media-player-info
 
 emerge --sync
 
