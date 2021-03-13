@@ -139,10 +139,7 @@ vim /etc/conf.d/xdm
 
 usermod -a -G video sddm
 
-emerge --ask --verbose konsole git kde-apps/dolphin kate kde-apps/kompare gparted  
-
-# if needing to utilize command below emerge gentoolkit
-# revdep-rebuild
+emerge --ask --verbose konsole kde-apps/dolphin kate kde-apps/kompare gparted konqueror 
 
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
