@@ -117,6 +117,7 @@ paperconfig -p letter
 
 emerge --depclean
 
+# comment out lines
 vim /etc/portage/package.use/circular.use
 
 emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
