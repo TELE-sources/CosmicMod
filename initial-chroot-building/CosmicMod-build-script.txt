@@ -121,17 +121,9 @@ emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
 
-eselect fontconfig enable 16 17 18 29 30 38 40
-
-emerge --sync
-
-emerge --update --newuse --deep --with-bdeps=y --ask --verbose @world
-
-emerge --depclean
+eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 20 28 29 30 33 35 37 38 39 41 42
 
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
-
-rc-update add xdm default
 
 vim /etc/conf.d/xdm   
     
@@ -139,7 +131,7 @@ vim /etc/conf.d/xdm
 
 usermod -a -G video sddm
 
-emerge --ask --verbose konsole kde-apps/dolphin kate kde-apps/kompare gparted konqueror 
+emerge --ask --verbose konsole kde-apps/dolphin kate kde-apps/kompare gparted konqueror app-text/evince sys-fs/quota kde-misc/kdeconnect
 
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
@@ -147,7 +139,7 @@ passwd mod
 
 passwd
 
-rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rm stage3-amd64-*.tar.xz
+rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rm stage3-amd64-*.tar.xz && rc-update add xdm default && rc-update add lvm boot
 
 emerge --sync 
 
