@@ -137,19 +137,35 @@ emerge --ask --verbose  kde-misc/markdownpart kde-misc/kmarkdownwebview media-gf
 
 emerge --ask --verbose gentoolkit app-arch/unar app-arch/p7zip app-arch/lrzip
 
+rm stage3-amd64-*.tar.xz
+
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
 passwd mod
 
 passwd
 
-rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rm stage3-amd64-*.tar.xz && rc-update add xdm default && rc-update add lvm boot
+# update world file using diff viewer
 
-emerge --sync 
+emerge --ask --verbose --sync
 
-emerge --ask --verbose --update --newuse --deep --with-bdeps=y @world
+emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
-emerge --depclean && sync
+emerge --depclean && eclean -d distfiles && eselect news purge
+
+eselect fontconfig --list
+
+eselect fontconfig enable 30 37 40 46 50 54 58 61
+
+freshclam
+
+emerge --config =dev-db/mariadb-10.4.17
+
+user $flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+rc-update add metalog default && rc-update add bluetooth default && rc-service bluetooth start && rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot &&  && rc-update add xdm default && rc-update add lvm boot
+
+history -c && sync
 
 exit
 
@@ -164,4 +180,3 @@ exit
 exit
 
 exit
-
