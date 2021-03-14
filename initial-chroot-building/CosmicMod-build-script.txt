@@ -135,6 +135,8 @@ emerge --ask --verbose konsole kde-apps/dolphin kate kde-apps/kompare gparted ko
 
 emerge --ask --verbose  kde-misc/markdownpart kde-misc/kmarkdownwebview media-gfx/kgraphviewer kde-apps/ark kde-apps/kleopatra kde-apps/ffmpegthumbs kde-apps/thumbnailers kde-apps/keditbookmarks kde-apps/svgpart virtual/jre
 
+emerge --ask --verbose gentookit app-arch/unar app-arch/p7zip app-arch/lrzip
+
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
 passwd mod
