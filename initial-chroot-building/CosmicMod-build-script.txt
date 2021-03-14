@@ -165,6 +165,12 @@ passwd mod
 
 passwd
 
+layman -L
+
+layman -o https://raw.githubusercontent.com/cosmicoz/gentoo-overlay/master/repositories.xml -f -a cosmicmod
+
+layman -S
+
 history -c && sync
 
 exit
