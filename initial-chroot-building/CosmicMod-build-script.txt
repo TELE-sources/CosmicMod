@@ -148,7 +148,7 @@ useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev 
 
 emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
-emerge --depclean && eclean -d distfiles && eselect news purge
+emerge --depclean
 
 eselect fontconfig --list
 
@@ -171,6 +171,10 @@ layman -L
 layman -o https://raw.githubusercontent.com/cosmicoz/gentoo-overlay/master/repositories.xml -f -a cosmicmod
 
 layman -S
+
+emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+
+emerge --depclean && eclean -d distfiles && eselect news purge
 
 history -c && sync
 
