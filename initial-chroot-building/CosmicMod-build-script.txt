@@ -117,6 +117,8 @@ paperconfig -p letter
 
 emerge --depclean
 
+vim /etc/portage/package.use/circular.use
+
 emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
@@ -143,9 +145,7 @@ useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev 
 
 # update world file using diff viewer
 
-emerge --ask --verbose --sync
-
-emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 emerge --depclean && eclean -d distfiles && eselect news purge
 
