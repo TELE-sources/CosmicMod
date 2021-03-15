@@ -148,6 +148,8 @@ useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev 
 
 emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
+emerge --ask --verbose kde-apps/kdialog kde-frameworks/kwallet
+
 emerge --depclean
 
 eselect fontconfig --list
@@ -174,7 +176,7 @@ passwd mod
 
 passwd
 
-emerge --config =dev-db/mariadb-10.4.17
+emerge --config =dev-db/mariadb-10.5.9-r3
 
 history -c && sync
 
