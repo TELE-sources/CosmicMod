@@ -160,7 +160,7 @@ freshclam
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-rc-update add metalog default && rc-update add bluetooth default && rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rc-update add xdm default && rc-update add lvm boot
+rc-update add metalog default && rc-update add bluetooth default && rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rc-update add xdm default && rc-update add lvm boot && rc-update add NetworkManager default
 
 layman -L
 
