@@ -170,7 +170,7 @@ layman -S
 
 emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
-emerge --depclean && eclean -d distfiles && eselect news purge
+emerge --depclean && revdep-rebuild && eclean -d distfiles && eselect news purge
 
 passwd mod
 
