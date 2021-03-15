@@ -148,19 +148,19 @@ useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev 
 
 emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
-emerge --ask --verbose kde-apps/kdialog kde-frameworks/kwallet
-
 emerge --depclean
+
+emerge --ask --verbose kde-apps/kdialog
 
 eselect fontconfig --list
 
-eselect fontconfig enable 30 37 40 46 50 54 58 61
+eselect fontconfig enable 20 21 22 25 26 28 29 30 31 40 41 42 46 50 54 58 61 62
 
 freshclam
 
-user $flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-rc-update add metalog default && rc-update add bluetooth default && rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot &&  && rc-update add xdm default && rc-update add lvm boot
+rc-update add metalog default && rc-update add bluetooth default && rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rc-update add xdm default && rc-update add lvm boot
 
 layman -L
 
