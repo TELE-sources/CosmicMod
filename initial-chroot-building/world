@@ -18,11 +18,10 @@ kde-apps/kalarm
 kde-apps/kate
 kde-apps/kcalc
 kde-apps/kcron
-kde-apps/keditbookmarks
+kde-apps/kdialog
 kde-apps/kfind
 kde-apps/kleopatra
 kde-apps/kompare
-kde-apps/konqueror
 kde-apps/konsole
 kde-apps/ksystemlog
 kde-apps/kwalletmanager
@@ -51,6 +50,7 @@ net-irc/konversation
 net-misc/ntp
 net-p2p/transmission
 sys-apps/flatpak
+sys-apps/fwupd
 sys-apps/lshw
 sys-apps/pciutils
 sys-apps/usbutils
@@ -65,3 +65,4 @@ virtual/jre
 www-client/chromium
 www-client/firefox
 x11-misc/vdpauinfo
+x11-themes/oxygen-gtk
