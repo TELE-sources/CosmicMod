@@ -32,15 +32,31 @@ print
 
 quit
 
-sync && mkfs.fat -F 32 /dev/sda1 && mkfs.ext4 /dev/sda3 && mkswap /dev/sda2 && swapon /dev/sda2  && mkdir /mnt/gentoo && mount /dev/sda3 /mnt/gentoo && cd /mnt/gentoo && wget http://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20210310T214503Z.tar.xz && tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+sync &&
+mkfs.fat -F 32 /dev/sda1 &&
+mkfs.ext4 /dev/sda3 &&
+mkswap /dev/sda2 &&
+swapon /dev/sda2 &&
+mkdir /mnt/gentoo &&
+mount /dev/sda3 /mnt/gentoo &&
+cd /mnt/gentoo &&
+wget http://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64/stage3-amd64-20210310T214503Z.tar.xz &&
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
-mkdir --parents /mnt/gentoo/etc/portage/repos.conf && cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf && cp --dereference /etc/resolv.conf /mnt/gentoo/etc/ && mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys && mount --rbind /dev /mnt/gentoo/dev
+mkdir --parents /mnt/gentoo/etc/portage/repos.conf &&
+cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf &&
+# cp --dereference /etc/resolv.conf /mnt/gentoo/etc/ &&
+mount --types proc /proc /mnt/gentoo/proc &&
+mount --rbind /sys /mnt/gentoo/sys &&
+mount --rbind /dev /mnt/gentoo/dev
 
 chroot /mnt/gentoo /bin/bash 
 
 source /etc/profile && export PS1="(chroot) ${PS1}"
 
 mount /dev/sda1 /boot
+
+rm stage3-amd64-*.tar.xz
 
 emerge --sync
 
@@ -93,8 +109,7 @@ blkid
 
 vim /etc/fstab
 
-emerge --ask --verbose linux-firmware
-
+emerge --ask --verbose linux-firmware &&
 emerge --ask --verbose sys-kernel/gentoo-kernel
 
 vim /etc/conf.d/hostname
@@ -103,7 +118,8 @@ vim /etc/hosts
 
 emerge --ask --verbose dosfstools grub 
 
-grub-install --target=x86_64-efi --efi-directory=/boot --removable && grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=x86_64-efi --efi-directory=/boot --removable &&
+grub-mkconfig -o /boot/grub/grub.cfg
 
 vim /etc/default/grub
 
@@ -111,22 +127,28 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 vim /etc/portage/package.use/circular.use
 
-emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+emerge --sync &&
+emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
 
 emerge --depclean
 
+eclean -d distfiles
+
 # comment out lines
 vim /etc/portage/package.use/circular.use
 
-emerge --sync && emerge --ask --verbose kde-plasma/plasma-meta
+emerge --sync &&
+emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
 
 eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 20 28 29 30 33 35 37 38 39 41 42
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+env-update &&
+source /etc/profile &&
+export PS1="(chroot) $PS1"
 
 vim /etc/conf.d/xdm   
     
@@ -134,21 +156,45 @@ vim /etc/conf.d/xdm
 
 usermod -a -G video sddm
 
-emerge --ask --verbose konsole kde-apps/dolphin kate kde-apps/kompare gparted konqueror app-text/evince sys-fs/quota kde-misc/kdeconnect
+emerge --ask --verbose \
+konsole \
+kde-apps/dolphin \
+kate \
+kde-apps/kompare \
+gparted \
+konqueror \
+app-text/evince \
+sys-fs/quota \
+kde-misc/kdeconnect
 
-emerge --ask --verbose  kde-misc/markdownpart kde-misc/kmarkdownwebview media-gfx/kgraphviewer kde-apps/ark kde-apps/kleopatra kde-apps/ffmpegthumbs kde-apps/thumbnailers kde-apps/keditbookmarks kde-apps/svgpart virtual/jre
+emerge --ask --verbose \
+kde-misc/markdownpart \
+kde-misc/kmarkdownwebview \
+media-gfx/kgraphviewer \
+kde-apps/ark \
+kde-apps/kleopatra \
+kde-apps/ffmpegthumbs \
+kde-apps/thumbnailers \
+kde-apps/keditbookmarks \
+kde-apps/svgpart \
+virtual/jre
 
-emerge --ask --verbose gentoolkit app-arch/unar app-arch/p7zip app-arch/lrzip
-
-rm stage3-amd64-*.tar.xz
+emerge --ask --verbose \
+gentoolkit \
+app-arch/unar \
+app-arch/p7zip \
+app-arch/lrzip
 
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
 # update world file using diff viewer
 
-emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+emerge --sync &&
+emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 emerge --depclean
+
+eclean -d distfiles
 
 emerge --ask --verbose kde-apps/kdialog
 
@@ -160,7 +206,14 @@ freshclam
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-rc-update add metalog default && rc-update add bluetooth default && rc-update add cupsd default && rc-update add dbus default && rc-update add elogind boot && rc-update add xdm default && rc-update add lvm boot && rc-update add NetworkManager default
+rc-update add metalog default &&
+rc-update add bluetooth default &&
+rc-update add cupsd default &&
+rc-update add dbus default &&
+rc-update add elogind boot &&
+rc-update add xdm default &&
+rc-update add lvm boot &&
+rc-update add NetworkManager default
 
 layman -L
 
@@ -168,15 +221,22 @@ layman -o https://raw.githubusercontent.com/cosmicoz/gentoo-overlay/master/repos
 
 layman -S
 
-emerge --sync && emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+emerge --sync &&
+emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
-emerge --depclean && revdep-rebuild && eclean -d distfiles && eselect news purge
+emerge --depclean
+
+eclean -d distfiles
+
+revdep-rebuild
+
+emerge --config =dev-db/mariadb-10.5.9-r3
+
+eselect news purge
 
 passwd mod
 
 passwd
-
-emerge --config =dev-db/mariadb-10.5.9-r3
 
 history -c && sync
 
