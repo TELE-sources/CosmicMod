@@ -8,7 +8,6 @@ app-office/libreoffice
 app-portage/cpuid2cpuflags
 app-portage/gentoolkit
 app-portage/layman
-app-portage/mirrorselect
 app-text/evince
 kde-apps/ark
 kde-apps/dolphin
@@ -36,13 +35,6 @@ kde-misc/kio-gdrive
 kde-misc/kmarkdownwebview
 kde-misc/markdownpart
 kde-plasma/plasma-meta
-media-fonts/arphicfonts
-media-fonts/droid
-media-fonts/ja-ipafonts
-media-fonts/noto
-media-fonts/takao-fonts
-media-fonts/wqy-microhei
-media-fonts/wqy-zenhei
 media-gfx/kgraphviewer
 media-video/libva-utils
 net-firewall/ufw
@@ -62,7 +54,6 @@ sys-fs/quota
 sys-kernel/gentoo-kernel
 sys-kernel/linux-firmware
 virtual/jre
-www-client/chromium
 www-client/firefox
 x11-misc/vdpauinfo
 x11-themes/oxygen-gtk
