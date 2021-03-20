@@ -160,7 +160,7 @@ emerge --depclean
 
 eclean -d distfiles
 
-# update world file using diff viewer
+# Import world file/contents
 
 emerge --sync &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
