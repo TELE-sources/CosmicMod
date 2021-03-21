@@ -175,13 +175,10 @@ emerge --depclean
 
 eclean -d distfiles
 
-layman -L
-
-layman -o https://raw.githubusercontent.com/cosmicoz/gentoo-overlay/master/repositories.xml -f -a cosmicmod
-
-layman -S
-
-emerge --sync &&
+layman -L &&
+layman -a cosmicmod &&
+layman -S &&
+emerge --sync && 
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 emerge --depclean
