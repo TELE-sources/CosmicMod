@@ -4,7 +4,7 @@ dd if=/dev/zero of=/dev/sda bs=1M && sync
 
 reboot 
 
-screen -S CosmicMod-2021
+screen -S CosmicMod-2021-r1
 
 fdisk -l
 
