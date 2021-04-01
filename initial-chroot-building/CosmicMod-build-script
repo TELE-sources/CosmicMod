@@ -52,7 +52,8 @@ mount --rbind /dev /mnt/gentoo/dev
 
 chroot /mnt/gentoo /bin/bash 
 
-source /etc/profile && export PS1="(chroot) ${PS1}"
+source /etc/profile &&
+export PS1="(chroot) ${PS1}"
 
 mount /dev/sda1 /boot
 
@@ -76,9 +77,13 @@ emerge --ask --verbose vim
 
 emerge --ask --verbose --depclean
 
-eselect editor list && eselect editor set 2
+eselect editor list
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+eselect editor set 2
+
+env-update &&
+source /etc/profile &&
+export PS1="(chroot) $PS1"
 
 vim /etc/portage/make.conf
 
@@ -99,7 +104,9 @@ eselect locale list
 
 eselect locale set 6
 
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+env-update &&
+source /etc/profile &&
+export PS1="(chroot) $PS1"
 
 emerge --ask --verbose net-misc/ntp
 
