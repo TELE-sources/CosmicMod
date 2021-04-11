@@ -5,5 +5,3 @@ sys-kernel/linux-firmware redistributable
 kde-apps/ksystemlog kdesu
 net-wireless/wpa_supplicant ap
 kde-plasma/plasma-meta firewall qrcode
-media-libs/libsdl2 gles2
-www-client/chromium official
