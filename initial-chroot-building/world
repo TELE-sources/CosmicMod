@@ -55,5 +55,4 @@ sys-fs/quota
 sys-kernel/gentoo-kernel
 sys-kernel/linux-firmware
 virtual/jre
-www-client/chromium
 www-client/firefox
