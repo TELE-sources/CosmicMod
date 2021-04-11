@@ -41,7 +41,6 @@ media-fonts/wqy-microhei
 media-fonts/wqy-zenhei
 media-gfx/kgraphviewer
 net-firewall/ufw
-net-irc/konversation
 net-misc/ntp
 sys-apps/flatpak
 sys-apps/lshw
