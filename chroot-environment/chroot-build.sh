@@ -76,21 +76,20 @@ vim /etc/default/grub
 grub-install --target=x86_64-efi --efi-directory=/boot --removable &&
 grub-mkconfig -o /boot/grub/grub.cfg
 
-#vim /etc/portage/package.use/circular.use
 emerge --sync &&
 sleep 5m &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
 
-emerge --depclean
-
+emerge --ask --verbose --depclean &&
+sleep 5 &&
 eclean -d distfiles
 
 # comment out lines
 vim /etc/portage/package.use/circular.use
 
-emerge --sync &&
+emerge --ask --verbose --sync &&
 emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
@@ -112,7 +111,7 @@ eclean -d distfiles
 
 # Import world file/contents
 
-emerge --sync &&
+emerge --ask --verbose --sync &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 eselect fontconfig --list
@@ -121,24 +120,29 @@ eselect fontconfig enable 20 21 22 25 26 28 29 30 31 40 41 42 46 50 54 58 61 62
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-emerge --depclean
-
+emerge --ask --verbose --depclean &&
+sleep 5m &&
 eclean -d distfiles
 
 layman -L &&
 layman -a cosmicmod &&
 layman -S &&
-emerge --sync && 
+emerge --sync &&
+sleep 5m &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
-emerge --depclean
-
-eclean -d distfiles
-
+emerge --ask --verbose --depclean &&
+sleep 5m &&
+eclean -d distfiles &&
+sleep 5m &&
 revdep-rebuild
 
-emerge --config =dev-db/mariadb-10.5.9-r3
+# emerge --config =dev-db/mariadb-10.5.9-r3
 
+eselect news list &&
+sleep 1m &&
+eselect news read &&
+sleep 1m &&
 eselect news purge
 
 rc-update add metalog default &&
