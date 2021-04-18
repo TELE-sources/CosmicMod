@@ -42,8 +42,9 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-blkid
-
+# host-env
+# cp --dereference /etc/fstab /mnt/gentoo/etc/
+# blkid
 vim /etc/fstab
 
 emerge --ask --verbose linux-firmware &&
@@ -59,25 +60,25 @@ hwclock --systohc
 cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
 cp --dereference /etc/portage/package.accept_keywords /mnt/gentoo/etc/portage/ &&
 cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
+cp --dereference /etc/conf.d/hostname /mnt/gentoo/etc/conf.d/ &&
+cp --dereference /etc/hosts /mnt/gentoo/etc/
 
 paperconfig -p letter
 
-vim /etc/conf.d/hostname
+emerge --ask --verbose dosfstools grub
 
-vim /etc/hosts
-
-emerge --ask --verbose dosfstools grub 
+# host-env
+cp --dereference /etc/default/grub /mnt/gentoo/etc/default/
+blkid
+# update root=UUID
+vim /etc/default/grub
 
 grub-install --target=x86_64-efi --efi-directory=/boot --removable &&
 grub-mkconfig -o /boot/grub/grub.cfg
 
-vim /etc/default/grub
-
-grub-mkconfig -o /boot/grub/grub.cfg 
-
-vim /etc/portage/package.use/circular.use
-
+#vim /etc/portage/package.use/circular.use
 emerge --sync &&
+sleep 5m &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
