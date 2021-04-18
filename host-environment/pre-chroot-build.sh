@@ -10,7 +10,7 @@ mklabel gpt
 
 unit MiB
 
-mkpart primary 1 10000
+mkpart primary 3 10000
 
 name 1 boot
 
