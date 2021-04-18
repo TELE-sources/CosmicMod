@@ -92,31 +92,30 @@ emerge --ask --verbose --sync &&
 sleep 1m &&
 emerge --ask --verbose kde-plasma/plasma-meta
 
-eselect fontconfig list
-
-eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 20 28 29 30 33 35 37 38 39 41 42
-
-env-update &&
-source /etc/profile &&
-export PS1="(chroot) $PS1"
-
 vim /etc/conf.d/display-manager
 # DISPLAYMANAGER="sddm"
 
 usermod -a -G video sddm
 
-emerge --depclean
-
+emerge --depclean &&
+sleep 1m &&
 eclean -d distfiles
 
-# Import world file/contents
+# host-env
+# cp --dereference /var/lib/portage/world /mnt/gentoo/var/lib/portage/ 
+# emerge --ask --verbose kde-plasma/kde-gtk-config
 
 emerge --ask --verbose --sync &&
+sleep 1m &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 eselect fontconfig --list
 
-eselect fontconfig enable 20 21 22 25 26 28 29 30 31 40 41 42 46 50 54 58 61 62
+eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 20 28 29 30 33 35 37 38 39 41 42 46 50 54 58 61 62
+
+env-update &&
+source /etc/profile &&
+export PS1="(chroot) $PS1"
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
