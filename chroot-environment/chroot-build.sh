@@ -45,9 +45,11 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-emerge --ask --verbose net-misc/ntp
+emerge --ask --verbose net-misc/ntp &&
+ntpd -q -g &&
+hwclock --systohc
 
-ntpd -q -g && hwclock --systohc
+vim /etc/portage/package.use/circular.use
 
 blkid
 
