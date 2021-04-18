@@ -141,14 +141,14 @@ emerge --config =dev-db/mariadb-10.5.9-r3
 
 eselect news purge
 
-rc-update add metalog default &&
-rc-update add bluetooth default &&
-rc-update add cupsd default &&
-rc-update add dbus default &&
-rc-update add elogind boot &&
-rc-update add xdm default &&
-rc-update add lvm boot &&
-rc-update add NetworkManager default
+rc-update add metalog default
+&& rc-update add bluetooth default
+&& rc-update add cupsd default
+&& rc-update add dbus default
+&& rc-update add elogind boot
+&& rc-update add display-manager default
+&& rc-update add lvm boot
+&& rc-update add NetworkManager default
 
 useradd -m -G users,wheel,audio,cdrom,portage,usb,video,lp,lpadmin,uucp,plugdev -s /bin/bash mod
 
