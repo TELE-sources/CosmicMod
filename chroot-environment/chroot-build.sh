@@ -6,22 +6,24 @@ emerge --sync
 
 eselect news list
 
-eselect profile list
+eselect news read
 
+eselect news purge
+
+eselect profile list &&
+sleep 1m &&
 eselect profile set 8
 
-ls /usr/share/zoneinfo/US
-
+# ls /usr/share/zoneinfo/US
 echo "US/Central" > /etc/timezone
 
 emerge --config sys-libs/timezone-data
 
-emerge --ask --verbose vim
-
-emerge --ask --verbose --depclean
-
-eselect editor list
-
+emerge --ask --verbose vim &&
+sleep 1m &&
+emerge --ask --verbose --depclean &&
+eselect editor list &&
+sleep 1m &&
 eselect editor set 2
 
 env-update &&
