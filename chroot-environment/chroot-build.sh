@@ -31,9 +31,6 @@ source /etc/profile &&
 export PS1="(chroot) $PS1"
 
 # host-env
-cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
-cp --dereference /etc/portage/package.accept_keywords /mnt/gentoo/etc/portage/ &&
-cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
 cp --dereference /etc/locale.gen /mnt/gentoo/etc/
 
 locale-gen &&
@@ -45,18 +42,25 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-emerge --ask --verbose net-misc/ntp &&
-ntpd -q -g &&
-hwclock --systohc
-
-vim /etc/portage/package.use/circular.use
-
 blkid
 
 vim /etc/fstab
 
 emerge --ask --verbose linux-firmware &&
 emerge --ask --verbose sys-kernel/gentoo-kernel
+
+vim /etc/portage/package.use/circular.use
+
+emerge --ask --verbose net-misc/ntp &&
+ntpd -q -g &&
+hwclock --systohc
+
+# host-env
+cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
+cp --dereference /etc/portage/package.accept_keywords /mnt/gentoo/etc/portage/ &&
+cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
+
+paperconfig -p letter
 
 vim /etc/conf.d/hostname
 
