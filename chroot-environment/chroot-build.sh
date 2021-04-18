@@ -82,14 +82,14 @@ emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 paperconfig -p letter
 
+emerge --ask --verbose gentoolkit
+
 emerge --ask --verbose --depclean &&
 sleep 5 &&
 eclean -d distfiles
 
-# comment out lines
-vim /etc/portage/package.use/circular.use
-
 emerge --ask --verbose --sync &&
+sleep 1m &&
 emerge --ask --verbose kde-plasma/plasma-meta
 
 eselect fontconfig list
