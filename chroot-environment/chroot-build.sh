@@ -1,11 +1,7 @@
-# This is a work in progress
-
 source /etc/profile &&
-export PS1="(chroot) ${PS1}"
-
-mount /dev/sda1 /boot
-
-rm stage3-amd64-*.tar.xz
+export PS1="(chroot) ${PS1}" 
+&& mount /dev/sda1 /boot
+&& rm stage3-amd64-*.tar.xz
 
 emerge --sync
 
