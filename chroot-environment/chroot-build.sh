@@ -34,16 +34,11 @@ export PS1="(chroot) $PS1"
 cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
 cp --dereference /etc/portage/package.accept_keywords /mnt/gentoo/etc/portage/ &&
 cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
+cp --dereference /etc/locale.gen /mnt/gentoo/etc/
 
-vim /etc/locale.gen
-
-    en_US ISO-8859-1
-    en_US.UTF-8 UTF-8
-
-locale-gen
-
-eselect locale list
-
+locale-gen &&
+eselect locale list &&
+sleep 1m &&
 eselect locale set 6
 
 env-update &&
