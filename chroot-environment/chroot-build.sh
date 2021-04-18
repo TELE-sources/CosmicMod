@@ -30,13 +30,10 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-vim /etc/portage/make.conf
-
-vim /etc/portage/package.use/zz.use
-
-vim /etc/portage/package.accept_keywords
-
-vim /etc/portage/package.mask/zz.mask
+# host-env
+cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
+cp --dereference /etc/portage/package.accept_keywords /mnt/gentoo/etc/portage/ &&
+cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
 
 vim /etc/locale.gen
 
