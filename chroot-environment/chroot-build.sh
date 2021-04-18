@@ -100,8 +100,7 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-vim /etc/conf.d/xdm   
-    
+vim /etc/conf.d/display-manager
 # DISPLAYMANAGER="sddm"
 
 usermod -a -G video sddm
