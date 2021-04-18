@@ -1,10 +1,4 @@
-# This is a work in progress
-
-fdisk -l
-
 dd if=/dev/zero of=/dev/sda bs=1M && sync
-
-reboot 
 
 screen -S CosmicMod-2021-r1
 
