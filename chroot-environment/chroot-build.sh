@@ -103,15 +103,19 @@ eclean -d distfiles
 
 # host-env
 # cp --dereference /var/lib/portage/world /mnt/gentoo/var/lib/portage/ 
-# emerge --ask --verbose kde-plasma/kde-gtk-config
 
 emerge --ask --verbose --sync &&
 sleep 1m &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
+eselect news read &&
+sleep 1m &&
+eselect news purge &&
+revdep-rebuild
+
 eselect fontconfig --list
 
-eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 20 28 29 30 33 35 37 38 39 41 42 46 50 54 58 61 62
+eselect fontconfig enable 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 25 26 28 29 30 31 37 38 39 40 41 42 45 46 48 50 51 52 53 54 56 57 58 61 62
 
 env-update &&
 source /etc/profile &&
@@ -120,29 +124,19 @@ export PS1="(chroot) $PS1"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 emerge --ask --verbose --depclean &&
-sleep 5m &&
+sleep 1m &&
 eclean -d distfiles
 
 layman -L &&
 layman -a cosmicmod &&
 layman -S &&
-emerge --sync &&
-sleep 5m &&
+emerge --ask --verbose --sync &&
+sleep 1m &&
 emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
 
 emerge --ask --verbose --depclean &&
-sleep 5m &&
-eclean -d distfiles &&
-sleep 5m &&
-revdep-rebuild
-
-# emerge --config =dev-db/mariadb-10.5.9-r3
-
-eselect news list &&
 sleep 1m &&
-eselect news read &&
-sleep 1m &&
-eselect news purge
+eclean -d distfiles
 
 rc-update add metalog default &&
 rc-update add bluetooth default &&
