@@ -1,7 +1,0 @@
-app-portage/layman sync-plugin-portage
-kde-plasma/kde-cli-tools kdesu
-net-misc/networkmanager connection-sharing
-sys-kernel/linux-firmware redistributable
-kde-apps/ksystemlog kdesu
-net-wireless/wpa_supplicant ap
-kde-plasma/plasma-meta firewall qrcode
