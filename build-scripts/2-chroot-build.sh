@@ -19,6 +19,28 @@ echo "US/Central" > /etc/timezone
 
 emerge --config sys-libs/timezone-data
 
+# host-env
+cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
+cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
+cp --dereference /etc/conf.d/hostname /mnt/gentoo/etc/conf.d/ &&
+cp --dereference /etc/hosts /mnt/gentoo/etc/
+cp --dereference /etc/locale.gen /mnt/gentoo/etc/
+cp --dereference /etc/fstab /mnt/gentoo/etc/
+blkid
+vim /mnt/gentoo/etc/fstab
+
+emerge --sync &&
+sleep 3m &&
+emerge --ask --verbose linux-firmware &&
+sleep 1m &&
+emerge --ask --verbose sys-kernel/gentoo-kernel
+
+emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
+
+emerge --ask --verbose --depclean 
+
+eclean -d distfiles
+
 emerge --ask --verbose vim &&
 sleep 1m &&
 emerge --ask --verbose --depclean &&
@@ -30,9 +52,6 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-# host-env
-cp --dereference /etc/locale.gen /mnt/gentoo/etc/
-
 locale-gen &&
 eselect locale list &&
 sleep 1m &&
@@ -42,25 +61,11 @@ env-update &&
 source /etc/profile &&
 export PS1="(chroot) $PS1"
 
-# host-env
-# cp --dereference /etc/fstab /mnt/gentoo/etc/
-# blkid
-vim /etc/fstab
-
-emerge --ask --verbose linux-firmware &&
-emerge --ask --verbose sys-kernel/gentoo-kernel
-
 vim /etc/portage/package.use/circular.use
 
 emerge --ask --verbose net-misc/ntp &&
 ntpd -q -g &&
 hwclock --systohc
-
-# host-env
-cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
-cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
-cp --dereference /etc/conf.d/hostname /mnt/gentoo/etc/conf.d/ &&
-cp --dereference /etc/hosts /mnt/gentoo/etc/
 
 paperconfig -p letter
 
