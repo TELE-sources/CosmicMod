@@ -58,7 +58,6 @@ hwclock --systohc
 
 # host-env
 cp --dereference /etc/portage/make.conf /mnt/gentoo/etc/portage/ &&
-cp --dereference /etc/portage/package.accept_keywords /mnt/gentoo/etc/portage/ &&
 cp --dereference /etc/portage/package.use/zz.use /mnt/gentoo/etc/portage/package.use/ &&
 cp --dereference /etc/conf.d/hostname /mnt/gentoo/etc/conf.d/ &&
 cp --dereference /etc/hosts /mnt/gentoo/etc/
@@ -85,7 +84,7 @@ paperconfig -p letter
 emerge --ask --verbose gentoolkit
 
 emerge --ask --verbose --depclean &&
-sleep 5 &&
+sleep 3m &&
 eclean -d distfiles
 
 emerge --ask --verbose --sync &&
@@ -125,18 +124,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 emerge --ask --verbose --depclean &&
 sleep 1m &&
-eclean -d distfiles
-
-layman -L &&
-layman -a cosmicmod &&
-layman -S &&
-emerge --ask --verbose --sync &&
-sleep 1m &&
-emerge --ask --verbose --update --deep --newuse --with-bdeps=y @world
-
-emerge --ask --verbose --depclean &&
-sleep 1m &&
-eclean -d distfiles
+eclean -d distfiles &&
 
 rc-update add metalog default &&
 rc-update add bluetooth default &&
