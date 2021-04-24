@@ -121,6 +121,8 @@ emerge --ask --verbose --depclean &&
 sleep 1m &&
 eclean -d distfiles &&
 
+vim /etc/resolv.conf
+
 rc-update add metalog default &&
 rc-update add bluetooth default &&
 rc-update add cupsd default &&
