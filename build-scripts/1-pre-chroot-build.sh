@@ -1,7 +1,7 @@
-dd if=/dev/zero of=/dev/sda &&
-sleep 1m &&
+dd if=/dev/zero of=/dev/sda
+
 sync &&
-sleep 5m &&
+sleep 1m &&
 reboot
 
 screen -S CosmicMod-2021-r1
