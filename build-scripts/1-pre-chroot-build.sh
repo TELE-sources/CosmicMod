@@ -1,4 +1,5 @@
 dd if=/dev/zero of=/dev/sda &&
+sleep 1m &&
 sync &&
 sleep 5m &&
 reboot
