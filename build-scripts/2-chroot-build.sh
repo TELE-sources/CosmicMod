@@ -62,7 +62,8 @@ paperconfig -p letter
 emerge --ask --verbose dosfstools grub
 
 # host-env
-cp --dereference /etc/default/grub /mnt/gentoo/etc/default/
+# cp --dereference /etc/default/grub /mnt/gentoo/etc/default/
+
 blkid
 # update root=UUID
 vim /etc/default/grub
